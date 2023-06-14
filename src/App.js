@@ -5,10 +5,29 @@ import MainVideo from "./components/MainVideo";
 import Video from "./components/Video";
 import { Container,Row,Col } from "react-bootstrap";
 import VideoList from "./components/VideoList";
+import youtube from "./api/youtube";
 
 const App=()=>{
+
+
+
+  const handleSubmit=async (searchTerm)=>{
+    const response=await youtube.get('search',{
+      params:{
+        part:'snippet',
+        maxResults:5,
+        key:'AIzaSyCPJtz7L4dAaqZJM-ZRPO2DwAbaoVXDzPk',
+        q:searchTerm
+      }
+
+    });
+    console.log(response.data);
+
+  }
+
+
   return <Container> 
-  <SearchBar/>
+  <SearchBar onSubmit={handleSubmit}/>
   <Row>
         <Col sm={8}>
         <MainVideo/>
