@@ -6,11 +6,7 @@ import { Button } from "react-bootstrap";
 import { Stack } from "react-bootstrap";
 const SearchBar=({onSubmit})=>{
   const[search,setSearch]=useState('')
-  
-
-
-
-    return<InputGroup className="mt-3">
+      return<InputGroup className="mt-3">
       <Form onSubmit={(e)=>{
         e.preventDefault()
         onSubmit(search)

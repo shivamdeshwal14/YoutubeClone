@@ -1,4 +1,4 @@
-import React  from "react";
+import React, { useState }  from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from "./components/SearchBar";
 import MainVideo from "./components/MainVideo";
@@ -9,6 +9,7 @@ import youtube from "./api/youtube";
 
 const App=()=>{
 
+  const[mainVideo,setMainvideo]=useState(undefined)
 
 
   const handleSubmit=async (searchTerm)=>{
@@ -21,7 +22,7 @@ const App=()=>{
       }
 
     });
-    console.log(response.data);
+      setMainvideo(response.data.items[0].id)
 
   }
 
@@ -30,7 +31,7 @@ const App=()=>{
   <SearchBar onSubmit={handleSubmit}/>
   <Row>
         <Col sm={8}>
-        <MainVideo/>
+        <MainVideo videoRef={mainVideo}/>
         </Col>
         <Col sm={4}>
         <VideoList/>
