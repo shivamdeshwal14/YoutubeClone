@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from "./components/SearchBar";
 import MainVideo from "./components/MainVideo";
@@ -8,8 +8,13 @@ import VideoList from "./components/VideoList";
 import youtube from "./api/youtube";
 
 const App=()=>{
+// state for main video
+  const[mainVideo,setMainvideo]=useState('')
+  // state fot side video array
+  const[videos,setvideos]=useState([])
+  // state for sending vedio
+  const[vedioid,setvedioid]=useState('')
 
-  const[mainVideo,setMainvideo]=useState(undefined)
 
 
   const handleSubmit=async (searchTerm)=>{
@@ -22,19 +27,25 @@ const App=()=>{
       }
 
     });
-      setMainvideo(response.data.items[0].id)
-
+      setMainvideo(response.data.items[0])
+      setvideos(response.data.items)
+      setvedioid(response.data.items[0].id)
+      
+     
   }
+  useEffect(()=>{
+    handleSubmit('Laptop')
+  },[])
 
 
   return <Container> 
   <SearchBar onSubmit={handleSubmit}/>
   <Row>
         <Col sm={8}>
-        <MainVideo videoRef={mainVideo}/>
+        <MainVideo videoRef={mainVideo} idRef={vedioid}/>
         </Col>
         <Col sm={4}>
-        <VideoList/>
+        <VideoList  videosList={videos} setMainvideo={setMainvideo}/>
         </Col>
       </Row>
  

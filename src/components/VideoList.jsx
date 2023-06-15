@@ -1,10 +1,12 @@
 import React from "react";
 import Video from "./Video";
-const videos =[1,2,3,4,5]
+
 // const videos=Array(5).fill() ---5 undefined elements in array
-const VideoList=()=>{
-    return<div className="mt-5">
-            { videos.map((vid,idx)=><Video key={idx}/>)}
+const VideoList=({videosList,setMainvideo})=>{
+
+   
+    return videosList.length==0 ? <h1>Loading</h1>:<div className="mt-5">
+            { videosList.map((vid,idx)=>< Video videoDetail={vid} key={idx} setMainvideo={setMainvideo}/>)}
     </div> 
 }
 export default VideoList
