@@ -13,8 +13,7 @@ const App=()=>{
   // state fot side video array
   const[videos,setvideos]=useState([])
   // state for sending vedio
-  const[vedioid,setvedioid]=useState('')
-
+ 
 
 
   const handleSubmit=async (searchTerm)=>{
@@ -29,28 +28,21 @@ const App=()=>{
     });
       setMainvideo(response.data.items[0])
       setvideos(response.data.items)
-      setvedioid(response.data.items[0].id)
-      
-     
+       
   }
   useEffect(()=>{
-    handleSubmit('Laptop')
+    handleSubmit('ReactJS')
   },[])
-
-
-  return <Container> 
+  return   <Container> 
   <SearchBar onSubmit={handleSubmit}/>
   <Row>
         <Col sm={8}>
-        <MainVideo videoRef={mainVideo} idRef={vedioid}/>
+        <MainVideo videoRef={mainVideo}/>
         </Col>
         <Col sm={4}>
         <VideoList  videosList={videos} setMainvideo={setMainvideo}/>
         </Col>
-      </Row>
- 
-
-   
+      </Row>  
   </Container>
 }
 export default App

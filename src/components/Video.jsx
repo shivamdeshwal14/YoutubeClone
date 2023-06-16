@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Container, Row,Card } from "react-bootstrap";
 
 const Video=({videoDetail,setMainvideo})=>{
-console.log(videoDetail);
+    
    
     return<Container className="mt-2" onClick={()=>setMainvideo(videoDetail)}>
         <Row>

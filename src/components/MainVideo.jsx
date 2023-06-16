@@ -1,18 +1,13 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-const MainVideo=({videoRef,idRef})=>{
+const MainVideo=({videoRef,})=>{
 
-const vid=idRef.videoId
-console.log(vid);
-  
-  
+const vid=videoRef.id.videoId
 const videoSrc = `https://www.youtube.com/embed/${vid}`
 
-
     return     <Card  className="mt-5">     
-      <iframe  width="100%"height="200%"
-         title="VideoTitle" 
-         src={videoSrc}/> 
+     <iframe width="420" height="345" src={videoSrc}>
+    </iframe>
        <Card.Body>
         <Card.Title>{videoRef.snippet.title}</Card.Title>
         <Card.Text>
